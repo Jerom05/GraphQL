@@ -16,7 +16,7 @@ const Schema = buildSchema(`
         id:String,
         firstName: String,
         age: Int,
-        company: Company
+        Company: Company
     }
 
     type Query{
@@ -27,15 +27,20 @@ const Schema = buildSchema(`
 `)
 
 var root ={
-    user:(args)=>{
-        return axios.get(`http://localhost:3000/users/${args.id}`)
-        .then(res=>res.data)
-    },
-    company:(parent, args)=>{
-        console.log(parent)
-        return axios.get(`http://localhost:3000/companies/${parent.companyId}`)
-        .then(res=>res.data)   
+    Query:{
+    
+        user:(args)=>{
+            return axios.get(`http://localhost:3000/users/${args.id}`)
+            .then(res=>res.data)
+        },
+        company:(parent,args)=>{
+            console.log(args)
+            return axios.get(`http://localhost:3000/companies/${args.id}`)
+            .then(res=>res.data)   
+        }
+
     }
+    
 }
 
 
@@ -48,3 +53,4 @@ app.use('/graphql', graphqlHTTP({
 app.listen(4000, ()=>{
     console.log("server running..")
 })
+
