@@ -1,10 +1,13 @@
 import React from "react";
 import SongList from "./components/SongList";
-function App() {
+
+function App({childern}) {
   return (
-    <div className="App">
-        <SongList />
-    </div>
+      <div className="App">
+        <div className="childern">
+          <SongList />
+        </div>
+      </div>
   );
 }
 
