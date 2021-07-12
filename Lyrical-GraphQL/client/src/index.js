@@ -15,7 +15,9 @@ import {
   InMemoryCache,
   ApolloProvider
 } from "@apollo/client";
+
 import SongCreate from './components/SongCreate';
+import SongDetail from './components/SongDetail';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
@@ -29,8 +31,11 @@ ReactDOM.render(
           <Route exact path="/">
             <App />
           </Route>
-          <Route exact path="/new/song">
+          <Route exact path="/songs/new">
             <SongCreate />
+          </Route>
+          <Route exact path="/song/:id">
+            <SongDetail />
           </Route>
         </Switch>
     </Router>
